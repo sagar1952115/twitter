@@ -16,7 +16,7 @@ function App() {
     <div>
       <Routes>
         <Route
-          path="/home"
+          path="/"
           element={<Navbar active={active} setActive={setActive} />}
         >
           <Route
