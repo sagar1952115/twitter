@@ -16,7 +16,7 @@ const SignupForm = () => {
     axios
       .post("https://omnipractice-server1.onrender.com/signup", {
         name,
-        usename: email,
+        username: email,
         password,
       })
       .then(({ data: { data } }) => {
