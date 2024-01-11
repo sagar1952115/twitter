@@ -30,7 +30,7 @@ const Navbar = () => {
           <Link to="/profile/123">
             <div
               className={`mx-6 ${
-                location.pathname === "profile" ? "text-red-400" : ""
+                location.pathname === "/profile" ? "text-red-400" : ""
               }`}
             >
               Profile
