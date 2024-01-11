@@ -9,7 +9,7 @@ const Feed = () => {
   const userId = JSON.parse(user).username;
   useEffect(() => {
     axios
-      .get(`https://omnipractice-server1.onrender.com/feed/${userId}`)
+      .get(`https://omniserver.onrender.com/feed/${userId}`)
       .then(({ data }) => {
         setTweet(data);
       })

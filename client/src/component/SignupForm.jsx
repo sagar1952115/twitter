@@ -14,7 +14,7 @@ const SignupForm = () => {
     }
 
     axios
-      .post("https://omnipractice-server1.onrender.com/signup", {
+      .post("https://omniserver.onrender.com/signup", {
         name,
         username: email,
         password,

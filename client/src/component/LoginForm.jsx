@@ -9,7 +9,7 @@ const LoginForm = () => {
   const navigate = useNavigate();
   const handleLogin = () => {
     axios
-      .post("https://omnipractice-server1.onrender.com/signin", {
+      .post("https://omniserver.onrender.com/signin", {
         username: email,
         password,
       })
