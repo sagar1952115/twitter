@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import TweetCard from "../component/TweetCard";
 import UserCard from "../component/UserCard";
+import Navbar from "../component/Navbar";
 
 const Profile = () => {
   const [select, setSelected] = useState("posts");
@@ -9,6 +10,7 @@ const Profile = () => {
   const userData = JSON.parse(user);
   return (
     <div>
+      <Navbar />
       <div className="w-[50%] p-3 m-auto">
         <div className="flex justify-around p-10 mt-5 border-b">
           <div className="w-32 h-32 border rounded-full border-slate-700"></div>

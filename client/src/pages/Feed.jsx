@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import TweetCard from "../component/TweetCard";
 import axios from "axios";
+import Navbar from "../component/Navbar";
 
 const Feed = () => {
   const [tweet, setTweet] = useState([]);
@@ -19,6 +20,7 @@ const Feed = () => {
   }, []);
   return (
     <div className="w-full ">
+      <Navbar />
       <div className="w-[50%] my-8 p-6   m-auto">
         <div className="">
           <button className="w-32 p-3 px-6 font-bold text-white bg-red-400 rounded-md text-md">

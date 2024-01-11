@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import UserCard from "../component/UserCard";
 import axios from "axios";
+import Navbar from "../component/Navbar";
 
 const Users = () => {
   const users = localStorage.getItem("users");
@@ -19,6 +20,7 @@ const Users = () => {
   }, []);
   return (
     <div>
+      <Navbar />
       <div className="w-[50%] my-8 p-6   m-auto">
         {user.map((curr, i) => {
           if (loggedinUser.username !== curr.username) {

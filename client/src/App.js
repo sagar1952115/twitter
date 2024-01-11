@@ -8,30 +8,30 @@ import Navbar from "./component/Navbar";
 import { useState } from "react";
 
 function App() {
-  const [active, setActive] = useState("feed");
+  // const [active, setActive] = useState("feed");
 
   let user = localStorage.getItem("users");
 
   return (
     <div>
       <Routes>
-        <Route
+        {/* <Route
           path="/"
           element={<Navbar active={active} setActive={setActive} />}
-        >
-          <Route
-            index
-            element={!user ? <Navigate to="/login" replace /> : <Feed />}
-          />
-          <Route
-            path="users"
-            element={!user ? <Navigate to="/login" replace /> : <Users />}
-          />
-          <Route
-            path="profile/:id"
-            element={!user ? <Navigate to="/login" replace /> : <Profile />}
-          />
-        </Route>
+        > */}
+        <Route
+          path="/"
+          element={!user ? <Navigate to="/login" replace /> : <Feed />}
+        />
+        <Route
+          path="/users"
+          element={!user ? <Navigate to="/login" replace /> : <Users />}
+        />
+        <Route
+          path="/profile/:id"
+          element={!user ? <Navigate to="/login" replace /> : <Profile />}
+        />
+        {/* </Route> */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
       </Routes>

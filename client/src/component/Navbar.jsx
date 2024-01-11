@@ -1,6 +1,7 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
-const Navbar = ({ active, setActive }) => {
+const Navbar = () => {
+  const location = useLocation();
   return (
     <>
       <div className="flex items-center justify-center w-full h-20 shadow-md ">
@@ -10,31 +11,34 @@ const Navbar = ({ active, setActive }) => {
         <div className="w-[60%] text-xl font-bold text-gray-300 flex justify-center items-center">
           <Link to="/">
             <div
-              onClick={() => setActive("feed")}
-              className={`mx-6 ${active === "feed" ? "text-red-400" : ""}`}
+              className={`mx-6 ${
+                location.pathname === "/" ? "text-red-400" : ""
+              }`}
             >
               Feed
             </div>
           </Link>
           <Link to="/users">
             <div
-              onClick={() => setActive("users")}
-              className={`mx-6 ${active === "users" ? "text-red-400" : ""}`}
+              className={`mx-6 ${
+                location.pathname === "/users" ? "text-red-400" : ""
+              }`}
             >
               Users
             </div>
           </Link>
           <Link to="/profile/123">
             <div
-              onClick={() => setActive("profile")}
-              className={`mx-6 ${active === "profile" ? "text-red-400" : ""}`}
+              className={`mx-6 ${
+                location.pathname === "profile" ? "text-red-400" : ""
+              }`}
             >
               Profile
             </div>
           </Link>
         </div>
       </div>
-      <Outlet />
+      {/* <Outlet /> */}
     </>
   );
 };
