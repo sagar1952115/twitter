@@ -116,7 +116,14 @@ app.post("/signup", (req, res) => {
   }
 
   // Create a new user
-  const newUser = { name, username, password, followers: [], messages: [] };
+  const newUser = {
+    name,
+    username,
+    password,
+    followers: [],
+    following: [],
+    messages: [],
+  };
   users.push(newUser);
 
   res.status(200).json({
