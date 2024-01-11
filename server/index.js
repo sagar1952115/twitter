@@ -100,7 +100,7 @@ let users = [
 
 app.use(bodyParser.json());
 var corsOptions = {
-  origin: ["http://localhost:3000", "https://omniclient.onrender.com"],
+  origin: ["http://localhost:3000", "https://omniclient-asqr.onrender.com/"],
 };
 app.use(cors(corsOptions));
 
