@@ -6,7 +6,7 @@ const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
   const handleLogin = () => {
     axios
       .post("https://omnipractice-server1.onrender.com/signin", {
@@ -15,7 +15,7 @@ const LoginForm = () => {
       })
       .then(({ data: { data } }) => {
         localStorage.setItem("users", JSON.stringify(data));
-        Navigate("/");
+        navigate("/");
       })
       .catch((err) => {
         console.log(err);
