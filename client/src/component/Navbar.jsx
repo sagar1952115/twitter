@@ -1,6 +1,8 @@
 import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
+  const user = localStorage.getItem("users");
+  const userData = JSON.parse(user);
   const location = useLocation();
   return (
     <>
@@ -27,7 +29,7 @@ const Navbar = () => {
               Users
             </div>
           </Link>
-          <Link to="/profile/123">
+          <Link to={`/profile/${userData.username}`}>
             <div
               className={`mx-6 ${
                 location.pathname === "/profile" ? "text-red-400" : ""

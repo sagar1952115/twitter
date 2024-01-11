@@ -19,18 +19,9 @@ function App() {
           path="/"
           element={<Navbar active={active} setActive={setActive} />}
         > */}
-        <Route
-          path="/"
-          element={!user ? <Navigate to="/login" replace /> : <Feed />}
-        />
-        <Route
-          path="/users"
-          element={!user ? <Navigate to="/login" replace /> : <Users />}
-        />
-        <Route
-          path="/profile/:id"
-          element={!user ? <Navigate to="/login" replace /> : <Profile />}
-        />
+        <Route path="/" element={!user ? <Login /> : <Feed />} />
+        <Route path="/users" element={!user ? <Login /> : <Users />} />
+        <Route path="/profile/:id" element={!user ? <Login /> : <Profile />} />
         {/* </Route> */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
