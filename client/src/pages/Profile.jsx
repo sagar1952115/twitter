@@ -26,7 +26,7 @@ const Profile = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/user/${id}`)
+      .get(`https://omniserver.onrender.com/user/${id}`)
       .then(({ data: { user } }) => {
         console.log(user);
         setUser(user);
