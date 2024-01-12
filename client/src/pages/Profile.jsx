@@ -1,13 +1,40 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TweetCard from "../component/TweetCard";
 import UserCard from "../component/UserCard";
 import Navbar from "../component/Navbar";
+import axios from "axios";
+import { useParams } from "react-router";
+
+export const userStructure = {
+  name: "",
+  username: "",
+  email: "",
+  followers: [],
+  messages: [],
+  following: [],
+};
 
 const Profile = () => {
+  const [user, setUser] = useState(userStructure);
   const [select, setSelected] = useState("posts");
+  const [followers, setFollowers] = useState([]);
+  const [following, setFollowing] = useState([]);
+  const [post, setPost] = useState([]);
 
-  const user = localStorage.getItem("users");
-  const userData = JSON.parse(user);
+  const { id } = useParams();
+  console.log(id);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/user/${id}`)
+      .then(({ data: { user } }) => {
+        console.log(user);
+        setUser(user);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   return (
     <div>
       <Navbar />
@@ -16,16 +43,12 @@ const Profile = () => {
           <div className="w-32 h-32 border rounded-full border-slate-700"></div>
           <div className="flex flex-col justify-center ">
             <div className="px-2 mb-2 text-2xl font-bold text-slate-700">
-              {userData.name}
+              {user.name}
             </div>
             <div className="flex text-slate-400">
-              <div className="px-2">Post : {userData.messages.length}</div>
-              <div className="px-2">
-                Followers : {userData.followers.length}
-              </div>
-              <div className="px-2">
-                Following : {userData.following.length}
-              </div>
+              <div className="px-2">Post : {user.messages.length}</div>
+              <div className="px-2">Followers : {user.followers.length}</div>
+              <div className="px-2">Following : {user.following.length}</div>
             </div>
           </div>
         </div>
@@ -59,7 +82,7 @@ const Profile = () => {
           <div>
             {select === "posts" && (
               <div>
-                {userData.messages.map((curr, i) => {
+                {user.messages.map((curr, i) => {
                   return (
                     <TweetCard
                       key={i}
@@ -73,11 +96,11 @@ const Profile = () => {
             )}
             {select === "followers" && (
               <div>
-                {userData.followers.map((curr, i) => {
+                {user.followers.map((curr, i) => {
                   return (
                     <UserCard
                       key={i}
-                      followingList={userData.following}
+                      followingList={user.following}
                       // name={ userData.name}
                       username={curr}
                     />
@@ -87,12 +110,12 @@ const Profile = () => {
             )}
             {select === "following" && (
               <div>
-                {userData.following.map((curr, i) => {
+                {user.following.map((curr, i) => {
                   return (
                     <UserCard
                       key={i}
                       // name={ userData.name}
-                      followingList={userData.following}
+                      followingList={user.following}
                       username={curr}
                     />
                   );

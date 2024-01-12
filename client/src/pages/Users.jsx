@@ -9,7 +9,7 @@ const Users = () => {
   const [user, setUser] = useState([]);
   useEffect(() => {
     axios
-      .get(`https://omnipractice-server1.onrender.com/get-user`)
+      .get(`https://omniserver.onrender.com/get-user`)
       .then(({ data }) => {
         setUser(data);
       })

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import SignupForm from "../component/SignupForm";
 import login from "../asset/login.jpeg";
 import { Link } from "react-router-dom";
@@ -8,11 +8,11 @@ const Signup = () => {
     <div>
       <div className="flex">
         <div className="w-[40%] ">
-          <div className="pl-16 pt-12">
-            <div className="text-red-400 mb-8 font-bold text-4xl ">TweetX</div>
+          <div className="pt-12 pl-16">
+            <div className="mb-8 text-4xl font-bold text-red-400 ">TweetX</div>
             <Link
               to="/login"
-              className="border border-black text-lg px-20  p-3 rounded-xl "
+              className="p-3 px-20 text-lg border border-black rounded-xl "
             >
               Login
             </Link>
@@ -20,7 +20,7 @@ const Signup = () => {
           <SignupForm />
         </div>
         <div className=" w-[60%] h-screen">
-          <img className="w-full h-full object-cover" src={login} alt="" />
+          <img className="object-cover w-full h-full" src={login} alt="" />
         </div>
       </div>
     </div>
