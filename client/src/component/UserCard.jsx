@@ -19,7 +19,7 @@ const UserCard = ({ followingList, username }) => {
     localStorage.setItem("users", JSON.stringify(userAuth));
 
     axios
-      .post("https://omniserver.onrender.com/followUser", {
+      .post("https://omniserver.onrender.com/follow-user", {
         username: userData,
         followUsername: username,
       })

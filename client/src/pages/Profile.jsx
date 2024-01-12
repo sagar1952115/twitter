@@ -9,9 +9,8 @@ import { UserContext } from "../App";
 export const userStructure = {
   name: "",
   username: "",
-  email: "",
   followers: [],
-  messages: [],
+  posts: [],
   following: [],
 };
 
@@ -21,7 +20,7 @@ const Profile = () => {
   const {
     userAuth: { following: userFollowing },
   } = useContext(UserContext);
-  const { followers, following, name, messages } = user;
+  const { followers, following, name, posts } = user;
 
   const { id } = useParams();
   console.log(id);
@@ -53,7 +52,7 @@ const Profile = () => {
               {name}
             </div>
             <div className="flex text-slate-400">
-              <div className="px-2">Post : {messages.length}</div>
+              <div className="px-2">Post : {posts.length}</div>
               <div className="px-2">Followers : {followers.length}</div>
               <div className="px-2">Following : {following.length}</div>
             </div>
@@ -89,8 +88,8 @@ const Profile = () => {
           <div>
             {select === "posts" && (
               <div>
-                {messages.length > 0 ? (
-                  messages.map((curr, i) => {
+                {posts.length > 0 ? (
+                  posts.map((curr, i) => {
                     return (
                       <TweetCard
                         key={i}
@@ -115,7 +114,6 @@ const Profile = () => {
                       <UserCard
                         key={i}
                         followingList={userFollowing}
-                        // name={ userData.name}
                         username={curr}
                       />
                     );
