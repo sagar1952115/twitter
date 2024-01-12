@@ -208,8 +208,8 @@ app.post("/followUser", (req, res) => {
   }
 
   // Add the user to the follower's list
-  user.followers.push(followUsername);
-  followUser.following.push(username);
+  user.following.push(followUsername);
+  followUser.followers.push(username);
 
   res.json({ message: "User followed successfully" });
 });
