@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
-import { Navigate, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
+import { UserContext } from "../App";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  let { setUserAuth } = useContext(UserContext);
 
   const navigate = useNavigate();
   const handleLogin = () => {
@@ -15,6 +18,7 @@ const LoginForm = () => {
       })
       .then(({ data: { data } }) => {
         localStorage.setItem("users", JSON.stringify(data));
+        setUserAuth(data);
         navigate("/");
       })
       .catch((err) => {

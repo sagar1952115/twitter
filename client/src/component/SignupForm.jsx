@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
+import { UserContext } from "../App";
 
 const SignupForm = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [cpassword, setCpassword] = useState("");
+  let { setUserAuth } = useContext(UserContext);
   const navigate = useNavigate();
+
   const handleSignup = () => {
     if (password !== cpassword) {
       alert("password and confirm password should be same");
@@ -21,6 +24,7 @@ const SignupForm = () => {
       })
       .then(({ data: { data } }) => {
         localStorage.setItem("users", JSON.stringify(data));
+        setUserAuth(data);
         navigate("/");
       });
   };

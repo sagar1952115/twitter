@@ -1,5 +1,6 @@
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { UserContext } from "../App";
 
 const UserCard = ({ followingList, username }) => {
   const isFollowing = followingList?.includes(username);
@@ -7,7 +8,16 @@ const UserCard = ({ followingList, username }) => {
   const user = localStorage.getItem("users");
   const userData = JSON.parse(user).username;
 
+  const {
+    userAuth,
+    userAuth: { following },
+  } = useContext(UserContext);
+
   const handleFollow = () => {
+    setIsFollow(true);
+    following.push(username);
+    localStorage.setItem("users", JSON.stringify(userAuth));
+
     axios
       .post("https://omniserver.onrender.com/followUser", {
         username: userData,
@@ -15,7 +25,6 @@ const UserCard = ({ followingList, username }) => {
       })
       .then((res) => {
         console.log(res);
-        setIsFollow(true);
       })
       .catch((err) => {
         console.log(err);

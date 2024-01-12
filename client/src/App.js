@@ -3,30 +3,30 @@ import Signup from "./pages/Signup";
 import Feed from "./pages/Feed";
 import Users from "./pages/Users";
 import Profile from "./pages/Profile";
-import { Navigate, Route, Routes } from "react-router";
-import Navbar from "./component/Navbar";
-import { useState } from "react";
+import { Route, Routes } from "react-router";
+import { createContext, useEffect, useState } from "react";
+
+export const UserContext = createContext({});
 
 function App() {
-  // const [active, setActive] = useState("feed");
-
+  const [userAuth, setUserAuth] = useState({});
   let user = localStorage.getItem("users");
+  console.log(userAuth);
+  useEffect(() => {
+    let userInSession = localStorage.getItem("users");
+    userInSession ? setUserAuth(JSON.parse(userInSession)) : setUserAuth({});
+  }, []);
 
   return (
-    <div>
+    <UserContext.Provider value={{ userAuth, setUserAuth }}>
       <Routes>
-        {/* <Route
-          path="/"
-          element={<Navbar active={active} setActive={setActive} />}
-        > */}
         <Route path="/" element={!user ? <Login /> : <Feed />} />
         <Route path="/users" element={!user ? <Login /> : <Users />} />
         <Route path="/profile/:id" element={!user ? <Login /> : <Profile />} />
-        {/* </Route> */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
       </Routes>
-    </div>
+    </UserContext.Provider>
   );
 }
 

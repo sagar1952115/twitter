@@ -1,24 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import TweetCard from "../component/TweetCard";
 import axios from "axios";
 import Navbar from "../component/Navbar";
+import { UserContext } from "../App";
 
 const Feed = () => {
+  const [loading, setLoading] = useState(true);
   const [tweet, setTweet] = useState([]);
-  const user = localStorage.getItem("users");
-  const userId = JSON.parse(user).username;
-  useEffect(() => {
+  let {
+    userAuth: { username },
+  } = useContext(UserContext);
+  const fetchFeed = () => {
     axios
-      .get(`https://omniserver.onrender.com/feed/${userId}`)
+      .get(`https://omniserver.onrender.com/feed/${username}`)
       .then(({ data }) => {
-        console.log(data);
         setTweet(data);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
+        setLoading(false);
       });
+  };
+  useEffect(() => {
+    if (username) {
+      fetchFeed();
+    }
     // eslint-disable-next-line
-  }, []);
+  }, [username]);
   return (
     <div className="w-full ">
       <Navbar />
@@ -30,16 +39,26 @@ const Feed = () => {
           <div></div>
         </div>
         <div className="my-5">
-          {tweet.map((curr, i) => {
-            return (
-              <TweetCard
-                key={i}
-                username={curr.username}
-                text={curr.text}
-                timestamp={curr.timestamp}
-              />
-            );
-          })}
+          {!loading ? (
+            tweet.length > 0 ? (
+              tweet.map((curr, i) => {
+                return (
+                  <TweetCard
+                    key={i}
+                    username={curr.username}
+                    text={curr.text}
+                    timestamp={curr.timestamp}
+                  />
+                );
+              })
+            ) : (
+              <div className="w-full p-10 text-4xl font-extrabold text-center text-slate-300">
+                No tweets to show.
+              </div>
+            )
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </div>

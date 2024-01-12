@@ -32,7 +32,9 @@ const Navbar = () => {
           <Link to={`/profile/${userData.username}`}>
             <div
               className={`mx-6 ${
-                location.pathname === "/profile" ? "text-red-400" : ""
+                location.pathname.split("/")[1] === "profile"
+                  ? "text-red-400"
+                  : ""
               }`}
             >
               Profile
