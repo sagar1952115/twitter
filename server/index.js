@@ -203,7 +203,7 @@ app.post("/followUser", (req, res) => {
   }
 
   // Check if the user is already following
-  if (user.followers.includes(followUsername)) {
+  if (user.following.includes(followUsername)) {
     return res.status(400).json({ error: "Already following this user" });
   }
 
@@ -225,8 +225,8 @@ app.get("/feed/:username", (req, res) => {
 
   // Combine user's messages and followed users' messages and sort them by timestamp
   const feed = user.messages.concat(
-    user.followers.reduce((acc, follower) => {
-      const followerUser = users.find((u) => u.username === follower);
+    user.following.reduce((acc, following) => {
+      const followerUser = users.find((u) => u.username === following);
       if (followerUser) {
         acc = acc.concat(followerUser.messages);
       }

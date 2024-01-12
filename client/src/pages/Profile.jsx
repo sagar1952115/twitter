@@ -114,7 +114,6 @@ const Profile = () => {
                   return (
                     <UserCard
                       key={i}
-                      // name={ userData.name}
                       followingList={user.following}
                       username={curr}
                     />

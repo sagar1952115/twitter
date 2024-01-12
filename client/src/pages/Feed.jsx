@@ -11,6 +11,7 @@ const Feed = () => {
     axios
       .get(`https://omniserver.onrender.com/feed/${userId}`)
       .then(({ data }) => {
+        console.log(data);
         setTweet(data);
       })
       .catch((err) => {
