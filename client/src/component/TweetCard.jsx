@@ -1,4 +1,5 @@
 import React from "react";
+import { getDay } from "../Date";
 
 const TweetCard = ({ username, timestamp, text }) => {
   return (
@@ -10,7 +11,7 @@ const TweetCard = ({ username, timestamp, text }) => {
         <div className="w-full p-3">
           <div className="flex justify-between w-full mb-2">
             <div className="text-lg font-bold text-slate-700">{username}</div>
-            <div className="text-sm text-slate-500">{timestamp}</div>
+            <div className="text-sm text-slate-500">{getDay(timestamp)}</div>
           </div>
           <div className="w-full line-clamp-3 text-slate-600 text-md">
             {text}

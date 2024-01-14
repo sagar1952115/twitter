@@ -37,7 +37,6 @@ const UserCard = ({ followingList, username }) => {
         <div className="w-16 h-16 border rounded-full border-slate-700"></div>
         <div className="flex flex-col p-5">
           <div className="text-xl text-slate-700">{username}</div>
-          {/* <div className="text-sm text-slate-400">Following : {following}</div> */}
         </div>
       </div>
       <button
