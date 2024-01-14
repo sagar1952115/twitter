@@ -3,6 +3,7 @@ import TweetCard from "../component/TweetCard";
 import axios from "axios";
 import Navbar from "../component/Navbar";
 import { UserContext } from "../App";
+import Loader from "../component/Loader";
 
 const Feed = () => {
   const [loading, setLoading] = useState(true);
@@ -57,7 +58,7 @@ const Feed = () => {
               </div>
             )
           ) : (
-            ""
+            <Loader />
           )}
         </div>
       </div>

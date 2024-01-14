@@ -3,6 +3,7 @@ import UserCard from "../component/UserCard";
 import axios from "axios";
 import Navbar from "../component/Navbar";
 import { UserContext } from "../App";
+import Loader from "../component/Loader";
 
 const Users = () => {
   const [loading, setLoading] = useState(true);
@@ -48,7 +49,7 @@ const Users = () => {
             </div>
           )
         ) : (
-          ""
+          <Loader />
         )}
       </div>
     </div>

@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import { UserContext } from "../App";
+import { toast } from "react-toastify";
 
 const SignupForm = () => {
   const [name, setName] = useState("");
@@ -13,7 +14,7 @@ const SignupForm = () => {
 
   const handleSignup = () => {
     if (password !== cpassword) {
-      alert("password and confirm password should be same");
+      toast.warn("Password and confirm password should be same");
     }
 
     axios
@@ -25,7 +26,12 @@ const SignupForm = () => {
       .then(({ data: { data } }) => {
         localStorage.setItem("users", JSON.stringify(data));
         setUserAuth(data);
+        toast.success("Signup successfull.");
         navigate("/");
+      })
+      .catch((err) => {
+        toast.error("Something went wrong.");
+        console.log(err);
       });
   };
   return (

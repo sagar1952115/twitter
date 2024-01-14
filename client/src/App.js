@@ -5,6 +5,8 @@ import Users from "./pages/Users";
 import Profile from "./pages/Profile";
 import { Route, Routes } from "react-router";
 import { createContext, useEffect, useState } from "react";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 export const UserContext = createContext({});
 
@@ -19,6 +21,7 @@ function App() {
 
   return (
     <UserContext.Provider value={{ userAuth, setUserAuth }}>
+      <ToastContainer />
       <Routes>
         <Route path="/" element={!user ? <Login /> : <Feed />} />
         <Route path="/users" element={!user ? <Login /> : <Users />} />
